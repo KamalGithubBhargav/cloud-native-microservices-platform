@@ -1,4 +1,5 @@
-using StackExchange.Redis;
+using CloudNative.Identity.Application;
+using CloudNative.Identity.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,16 +17,12 @@ builder.Services.AddCors(options =>
 });
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
-{
-    var configuration = builder.Configuration.GetValue<string>("Redis:Connection") ?? "localhost:6379";
-    return ConnectionMultiplexer.Connect(configuration);
-});
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services
+    .AddApplication()
+    .AddInfrastructure(builder.Configuration);
 
 
 var app = builder.Build();
