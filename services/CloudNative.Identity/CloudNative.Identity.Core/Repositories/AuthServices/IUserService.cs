@@ -1,6 +1,6 @@
 ﻿using CloudNative.Identity.Core.Entities;
 
-namespace CloudNative.Identity.Core.Repositories
+namespace CloudNative.Identity.Core.Repositories.AuthServices
 {
     public interface IUserService
     {

@@ -1,8 +1,7 @@
 ﻿namespace CloudNative.Identity.Application.DTOs.Auth
 {
-    public class UserDto
+    public class LoginDto
     {
-        public int Id { get; set; }
         public string UserName { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }

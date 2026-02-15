@@ -1,7 +1,7 @@
 ﻿using CloudNative.Identity.Core.Entities;
-using CloudNative.Identity.Core.Repositories;
+using CloudNative.Identity.Core.Repositories.AuthServices;
 
-namespace CloudNative.Identity.Infrastructure.Persistence
+namespace CloudNative.Identity.Infrastructure.Persistence.Auth
 {
     public class UserService : IUserService
     {

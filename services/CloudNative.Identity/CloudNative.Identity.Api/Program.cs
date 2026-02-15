@@ -1,3 +1,4 @@
+using CloudNative.Identity.Api.Middlewares;
 using CloudNative.Identity.Application;
 using CloudNative.Identity.Infrastructure;
 
@@ -36,7 +37,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseCors(CorsAll); 
+app.UseCors(CorsAll);
+app.UseMiddleware<JwtMiddleware>();
 app.UseAuthorization();
 app.MapControllers();
 
