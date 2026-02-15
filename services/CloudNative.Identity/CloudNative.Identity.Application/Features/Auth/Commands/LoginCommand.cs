@@ -6,6 +6,6 @@ namespace CloudNative.Identity.Application.Features.Auth.Commands
 
     public class LoginCommand(LoginDto login) : IRequest<AuthResponse>
     {
-        public LoginDto login { get; }
+        public LoginDto login { get; set; } = login;
     }
 }

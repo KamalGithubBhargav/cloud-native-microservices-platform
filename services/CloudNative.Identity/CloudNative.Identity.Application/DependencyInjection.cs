@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CloudNative.Identity.Application.Features.Auth.Handlers;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace CloudNative.Identity.Application
@@ -11,7 +12,7 @@ namespace CloudNative.Identity.Application
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(new[]
             {
                 Assembly.GetExecutingAssembly(),
-                //typeof(GetCountriesHandler).Assembly
+                typeof(LoginCommandHandler).Assembly
             }));
 
             return services;

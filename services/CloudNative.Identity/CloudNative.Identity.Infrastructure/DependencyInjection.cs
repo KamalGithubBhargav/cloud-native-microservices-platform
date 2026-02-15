@@ -1,4 +1,5 @@
 ﻿using CloudNative.Identity.Core.Caching;
+using CloudNative.Identity.Core.Constants;
 using CloudNative.Identity.Core.Repositories.AuthServices;
 using CloudNative.Identity.Infrastructure.Caching;
 using CloudNative.Identity.Infrastructure.Persistence.Auth;
@@ -26,7 +27,7 @@ namespace CloudNative.Identity.Infrastructure
             // Redis
             services.AddSingleton<IConnectionMultiplexer>(
                 ConnectionMultiplexer.Connect(
-                    configuration["Redis:ConnectionString"] ?? "localhost:6379"
+                    configuration[CachingConstant.RedisConnection] ?? CachingConstant.LocalRedis
                 ));
 
             services.AddScoped<IRefreshTokenStore, RefreshTokenStore>();

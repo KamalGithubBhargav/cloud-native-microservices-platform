@@ -1,4 +1,5 @@
-﻿using CloudNative.Identity.Core.Repositories.AuthServices;
+﻿using CloudNative.Identity.Core.Constants;
+using CloudNative.Identity.Core.Repositories.AuthServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -22,16 +23,22 @@ namespace CloudNative.Identity.Infrastructure.Persistence.Auth
             var claims = new[] { new Claim(ClaimTypes.Name, userId) };
 
             var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(_config["Jwt:Key"]!)
+                Encoding.UTF8.GetBytes(_config[JwtConstant.Key]!)
             );
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expires = _config[JwtConstant.AccessTokenExpirationMinutes];
+
+            int minsExp = 0;
+            bool isMinExp = !string.IsNullOrEmpty(expires) ? 
+                 int.TryParse(expires, out minsExp) : false;
+            minsExp = isMinExp ? minsExp : JwtConstant.AccessTokenExpMins;
 
             var token = new JwtSecurityToken(
-                issuer: _config["Jwt:Issuer"],
-                audience: _config["Jwt:Audience"],
+                issuer: _config[JwtConstant.Issuer],
+                audience: _config[JwtConstant.Audience],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(15),
+                expires: DateTime.UtcNow.AddMinutes(minsExp),
                 signingCredentials: creds
             );
 

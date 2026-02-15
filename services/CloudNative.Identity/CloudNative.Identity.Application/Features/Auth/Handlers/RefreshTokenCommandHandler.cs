@@ -1,9 +1,11 @@
 ﻿using CloudNative.Identity.Application.DTOs.Auth;
 using CloudNative.Identity.Application.Features.Auth.Commands;
 using CloudNative.Identity.Core.Caching;
+using CloudNative.Identity.Core.Constants;
 using CloudNative.Identity.Core.Repositories.AuthServices;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace CloudNative.Identity.Application.Features.Auth.Handlers
 {
@@ -12,14 +14,17 @@ namespace CloudNative.Identity.Application.Features.Auth.Handlers
         private readonly IRefreshTokenStore _refreshTokenStore;
         private readonly ITokenService _tokenService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _config;
 
         public RefreshTokenCommandHandler(
             IRefreshTokenStore refreshTokenStore,
             ITokenService tokenService,
+            IConfiguration config,
             IHttpContextAccessor httpContextAccessor)
         {
             _refreshTokenStore = refreshTokenStore;
             _tokenService = tokenService;
+            _config = config;
             _httpContextAccessor = httpContextAccessor;
         }
 
@@ -34,16 +39,22 @@ namespace CloudNative.Identity.Application.Features.Auth.Handlers
                 throw new UnauthorizedAccessException();
 
             await _refreshTokenStore.RevokeAsync(refreshToken!);
+            
+            var expires = _config[JwtConstant.RefreshTokenExpirationDays];
+            int dayExp = 0;
+            bool isDayExp = !string.IsNullOrEmpty(expires) ?
+                 int.TryParse(expires, out dayExp) : false;
+            dayExp = isDayExp ? dayExp : JwtConstant.RefreshTokenExpDays;
 
             var newRefreshToken = _tokenService.GenerateRefreshToken();
-            await _refreshTokenStore.StoreAsync(newRefreshToken, userId, TimeSpan.FromDays(7));
+            await _refreshTokenStore.StoreAsync(newRefreshToken, userId, TimeSpan.FromDays(dayExp));
 
-            context.Response.Cookies.Append("refreshToken", newRefreshToken, new CookieOptions
+            context.Response.Cookies.Append(JwtConstant.CookiesRefreshToken, newRefreshToken, new CookieOptions
             {
                 HttpOnly = true,
                 Secure = false,
                 SameSite = SameSiteMode.None,
-                Expires = DateTime.UtcNow.AddDays(7)
+                Expires = DateTime.UtcNow.AddDays(dayExp)
             });
 
             var newAccessToken = _tokenService.GenerateAccessToken(userId);
