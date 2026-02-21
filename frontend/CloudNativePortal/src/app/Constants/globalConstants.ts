@@ -1,5 +1,5 @@
 export const globalConstants =  {
-  identityUrl: "http://localhost:5001",
+  identityUrl: "http://localhost:5001/api",
   tokenKey: "access_token"
 }
 

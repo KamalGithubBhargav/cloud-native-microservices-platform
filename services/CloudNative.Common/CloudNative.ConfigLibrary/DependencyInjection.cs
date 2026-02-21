@@ -10,18 +10,16 @@ namespace CloudNative.ConfigLibrary
         public static IServiceCollection AddConfigLibaray(
             this IServiceCollection services)
         {
-
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory) // runtime path
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("configlibrary.settings.json", optional: false, reloadOnChange: true)
                 .Build();
 
-            // 2️⃣ Register IConfiguration in DI so other services can consume it
             services.AddSingleton<IConfiguration>(configuration);
 
             services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<ITokenValidationHelper, TokenValidationHelper>();
-        
+            services.AddSingleton<ITokenValidationHelper, TokenValidationHelper>();
+
             return services;
         }
     }

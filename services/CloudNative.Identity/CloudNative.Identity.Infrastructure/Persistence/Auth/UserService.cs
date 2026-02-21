@@ -7,7 +7,7 @@ namespace CloudNative.Identity.Infrastructure.Persistence.Auth
     {
         private static readonly List<UserEntity> Users = new()
         {
-            new UserEntity { Id = 1, UserName = "alice", Password = "Password123!" },
+            new UserEntity { Id = 1, UserName = "rahul", Password = "123" },
             new UserEntity { Id = 2, UserName = "bob", Password = "Secret456!" },
             new UserEntity { Id = 3, UserName = "charlie", Password = "MyPass789!" }
         };
