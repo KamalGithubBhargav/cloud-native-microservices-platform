@@ -10,4 +10,9 @@
     <ProjectReference Include="..\CloudNative.Customer.Core\CloudNative.Customer.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+    <Folder Include="Features\Customer\Queries\" />
+  </ItemGroup>
+
 </Project>

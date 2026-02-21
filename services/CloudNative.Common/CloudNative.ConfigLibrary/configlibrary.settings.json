@@ -5,5 +5,8 @@
     "Audience": "http://localhost:4200",
     "AccessTokenExpirationMinutes": 60,
     "RefreshTokenExpirationDays": 7
+  },
+  "Kafka": {
+    "bootstrapServers": "localhost:29092"
   }
 }

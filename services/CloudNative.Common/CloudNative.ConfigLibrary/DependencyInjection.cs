@@ -1,5 +1,7 @@
-﻿using CloudNative.ConfigLibrary.Implementation;
+﻿using CloudNative.ConfigLibrary.Constants;
+using CloudNative.ConfigLibrary.Implementation;
 using CloudNative.ConfigLibrary.Interfaces;
+using CloudNative.ConfigLibrary.KafkaServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,6 +21,11 @@ namespace CloudNative.ConfigLibrary
 
             services.AddScoped<ITokenService, TokenService>();
             services.AddSingleton<ITokenValidationHelper, TokenValidationHelper>();
+
+            // Your Kafka services
+            string bootstrapServers = configuration[KafkaConstant.BootstrapServers]!;
+            services.AddSingleton<IKafkaProducerService, KafkaProducerService>();
+            services.AddSingleton(new KafkaTopicManager(configuration));
 
             return services;
         }

@@ -1,7 +1,12 @@
 using CloudNative.ConfigLibrary;
+using CloudNative.ConfigLibrary.KafkaServices;
+using CloudNative.ConfigLibrary.Settings;
 using CloudNative.Customer.Api.Middleware;
 using CloudNative.Customer.Application;
+using CloudNative.Customer.Application.Features.Customer.Consumers;
+using CloudNative.Customer.Core.Constants;
 using CloudNative.Customer.Infrastructure;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +32,22 @@ builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
+builder.Services.AddHostedService(sp =>
+{
+    var kafkaSettings = sp
+        .GetRequiredService<IOptions<KafkaSettings>>()
+        .Value;
+
+    var consumerInfo = KafkaRegistry.Consumers
+      .First(x => x.Topic == "customer-topic");
+
+    return new KafkaConsumerService(
+        bootstrapServers: kafkaSettings.BootstrapServers,
+        topic: consumerInfo.Topic,
+        groupId: consumerInfo.Group,
+        processor: new CustomerListProcessor());
+});
+
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
@@ -44,5 +65,16 @@ app.UseCors(CorsAll);
 app.UseMiddleware<JwtMiddleware>();
 app.UseAuthorization();
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var topicManager =
+    scope.ServiceProvider.GetRequiredService<KafkaTopicManager>();
+    foreach (var consumer in KafkaRegistry.Consumers)
+    {
+        await topicManager.CreateTopicIfNotExistsAsync(consumer.Topic);
+        await topicManager.CreateTopicIfNotExistsAsync(consumer.Topic + "-dlt");
+    }
+}
 
 app.Run();

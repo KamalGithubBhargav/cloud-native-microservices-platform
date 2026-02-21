@@ -1,6 +1,8 @@
-﻿namespace CloudNative.Customer.Application.DTOs
+﻿using MediatR;
+
+namespace CloudNative.Customer.Application.Features.Customer.Commands
 {
-    public class CustomerDetailsDto
+    public class CreateCustomerCommand : IRequest<bool>
     {
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
@@ -11,6 +13,5 @@
         public int CountryId { get; set; }
         public string PhoneNumber { get; set; } = string.Empty;
         public bool IsActive { get; set; }
-
     }
 }

@@ -1,4 +1,6 @@
 ﻿using CloudNative.ConfigLibrary.Constants;
+using CloudNative.Customer.Core.Interfaces;
+using CloudNative.Customer.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
@@ -34,6 +36,9 @@ namespace CloudNative.Customer.Infrastructure
 
                 return ConnectionMultiplexer.Connect(options);
             });
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
             return services;
         }
     }

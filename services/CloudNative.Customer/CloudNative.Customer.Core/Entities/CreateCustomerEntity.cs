@@ -1,6 +1,6 @@
 ﻿namespace CloudNative.Customer.Core.Entities
 {
-    public class CustomerDetailsEntity
+    public class CreateCustomerEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
