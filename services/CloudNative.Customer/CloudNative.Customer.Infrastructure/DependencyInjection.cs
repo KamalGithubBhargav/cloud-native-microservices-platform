@@ -1,6 +1,8 @@
 ﻿using CloudNative.ConfigLibrary.Constants;
 using CloudNative.Customer.Core.Interfaces;
+using CloudNative.Customer.Infrastructure.Database;
 using CloudNative.Customer.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
@@ -14,10 +16,11 @@ namespace CloudNative.Customer.Infrastructure
             IConfiguration configuration)
         {
             // SQL
-            //services.AddDbContext<AppDbContext>(options =>
-            //    options.UseSqlServer(
-            //        configuration.GetConnectionString("Default")
-            //    ));
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(
+                    configuration.GetConnectionString("Default")
+                ));
+
             var connectionString =
                  configuration[CachingConstant.RedisConnection]
                  ?? CachingConstant.LocalRedis;
