@@ -1,4 +1,4 @@
-﻿namespace CloudNative.Identity.Core.Constants
+﻿namespace CloudNative.ConfigLibrary.Constants
 {
     public class JwtConstant
     {
@@ -10,7 +10,5 @@
         public const string CookiesRefreshToken = "refreshToken";
         public const int AccessTokenExpMins = 15;
         public const int RefreshTokenExpDays = 1;
-
-
     }
 }

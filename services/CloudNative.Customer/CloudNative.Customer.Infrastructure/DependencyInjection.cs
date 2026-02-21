@@ -1,15 +1,9 @@
 ﻿using CloudNative.ConfigLibrary.Constants;
-using CloudNative.ConfigLibrary.Implementation;
-using CloudNative.ConfigLibrary.Interfaces;
-using CloudNative.Identity.Core.Caching;
-using CloudNative.Identity.Core.Repositories.AuthServices;
-using CloudNative.Identity.Infrastructure.Caching;
-using CloudNative.Identity.Infrastructure.Persistence.Auth;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 
-namespace CloudNative.Identity.Infrastructure
+namespace CloudNative.Customer.Infrastructure
 {
     public static class DependencyInjection
     {
@@ -22,9 +16,6 @@ namespace CloudNative.Identity.Infrastructure
             //    options.UseSqlServer(
             //        configuration.GetConnectionString("Default")
             //    ));
-
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ITokenService, TokenService>();
             var connectionString =
                  configuration[CachingConstant.RedisConnection]
                  ?? CachingConstant.LocalRedis;
@@ -43,13 +34,7 @@ namespace CloudNative.Identity.Infrastructure
 
                 return ConnectionMultiplexer.Connect(options);
             });
-            services.AddScoped<IRefreshTokenStore, RefreshTokenStore>();
-
             return services;
         }
     }
 }
-
-
-
-

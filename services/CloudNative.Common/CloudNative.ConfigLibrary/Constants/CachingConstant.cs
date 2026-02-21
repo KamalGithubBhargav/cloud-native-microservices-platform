@@ -1,4 +1,4 @@
-﻿namespace CloudNative.Identity.Core.Constants
+﻿namespace CloudNative.ConfigLibrary.Constants
 {
     public class CachingConstant
     {

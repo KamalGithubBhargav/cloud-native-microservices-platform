@@ -1,7 +1,7 @@
 using CloudNative.ConfigLibrary;
-using CloudNative.Identity.Api.Middleware;
-using CloudNative.Identity.Application;
-using CloudNative.Identity.Infrastructure;
+using CloudNative.Customer.Api.Middleware;
+using CloudNative.Customer.Application;
+using CloudNative.Customer.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

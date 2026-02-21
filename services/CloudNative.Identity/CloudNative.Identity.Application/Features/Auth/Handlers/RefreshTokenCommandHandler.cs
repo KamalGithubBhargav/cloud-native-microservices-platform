@@ -1,8 +1,8 @@
-﻿using CloudNative.Identity.Application.DTOs.Auth;
+﻿using CloudNative.ConfigLibrary.Constants;
+using CloudNative.ConfigLibrary.Interfaces;
+using CloudNative.Identity.Application.DTOs.Auth;
 using CloudNative.Identity.Application.Features.Auth.Commands;
 using CloudNative.Identity.Core.Caching;
-using CloudNative.Identity.Core.Constants;
-using CloudNative.Identity.Core.Repositories.AuthServices;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;

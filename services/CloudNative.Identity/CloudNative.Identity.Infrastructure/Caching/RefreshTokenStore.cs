@@ -1,5 +1,5 @@
-﻿using CloudNative.Identity.Core.Caching;
-using CloudNative.Identity.Core.Constants;
+﻿using CloudNative.ConfigLibrary.Constants;
+using CloudNative.Identity.Core.Caching;
 using StackExchange.Redis;
 
 namespace CloudNative.Identity.Infrastructure.Caching

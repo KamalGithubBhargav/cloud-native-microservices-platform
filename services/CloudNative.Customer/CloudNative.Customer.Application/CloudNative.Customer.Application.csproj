@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Constants\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\CloudNative.Common\CloudNative.ConfigLibrary\CloudNative.ConfigLibrary.csproj" />
+    <ProjectReference Include="..\CloudNative.Customer.Core\CloudNative.Customer.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
-﻿using CloudNative.Identity.Core.Constants;
-using CloudNative.Identity.Core.Repositories.AuthServices;
+﻿using CloudNative.ConfigLibrary.Constants;
+using CloudNative.ConfigLibrary.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace CloudNative.Identity.Infrastructure.Persistence.Auth
+namespace CloudNative.ConfigLibrary.Implementation
 {
     public class TokenService : ITokenService
     {
@@ -30,7 +30,7 @@ namespace CloudNative.Identity.Infrastructure.Persistence.Auth
             var expires = _config[JwtConstant.AccessTokenExpirationMinutes];
 
             int minsExp = 0;
-            bool isMinExp = !string.IsNullOrEmpty(expires) ? 
+            bool isMinExp = !string.IsNullOrEmpty(expires) ?
                  int.TryParse(expires, out minsExp) : false;
             minsExp = isMinExp ? minsExp : JwtConstant.AccessTokenExpMins;
 
@@ -54,6 +54,3 @@ namespace CloudNative.Identity.Infrastructure.Persistence.Auth
         }
     }
 }
-
-
-

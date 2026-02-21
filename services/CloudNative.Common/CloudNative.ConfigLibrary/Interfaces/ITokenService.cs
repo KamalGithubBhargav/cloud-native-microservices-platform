@@ -1,4 +1,4 @@
-﻿namespace CloudNative.Identity.Core.Repositories.AuthServices
+﻿namespace CloudNative.ConfigLibrary.Interfaces
 {
     public interface ITokenService
     {
