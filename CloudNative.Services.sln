@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudNative.Identity.Api", "services\CloudNative.Identity.Api\CloudNative.Identity.Api\CloudNative.Identity.Api.csproj", "{FA391BEA-CB7E-4D76-ADEB-1AFF8DFAD683}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{26788BF1-3703-457A-AD92-C8A1C1569BA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{B120EC6E-7628-4C37-9F62-E0DED58EC5D4}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CloudNativePortal", "frontend\CloudNativePortal\", "{08D19522-8B88-480C-8B1D-DC51E8983C06}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -23,6 +25,23 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CloudNativePortal", "fronte
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "56941"
+		SlnRelativePath = "frontend\CloudNativePortal\"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CloudNative.Identity", "CloudNative.Identity", "{92BBAA7F-070F-46C0-A8CB-90FB43C4C831}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudNative.Identity.Api", "services\CloudNative.Identity\CloudNative.Identity.Api\CloudNative.Identity.Api.csproj", "{5DD7FC09-D195-4B9E-8EB2-4C702D39C54B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudNative.Identity.Core", "services\CloudNative.Identity\CloudNative.Identity.Core\CloudNative.Identity.Core.csproj", "{85FC7746-53B4-46A5-A434-43EB88327651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudNative.Identity.Application", "services\CloudNative.Identity\CloudNative.Identity.Application\CloudNative.Identity.Application.csproj", "{8A92F76D-D411-4F7C-8CC3-50940C2D78F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudNative.Identity.Infrastructure", "services\CloudNative.Identity\CloudNative.Identity.Infrastructure\CloudNative.Identity.Infrastructure.csproj", "{16461B38-1436-40C1-9754-DC6C6F965D6F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{57ADCE5F-636E-41AC-A80F-A5FCDEA511F2}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		redis.conf = redis.conf
 	EndProjectSection
 EndProject
 Global
@@ -31,16 +50,36 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FA391BEA-CB7E-4D76-ADEB-1AFF8DFAD683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA391BEA-CB7E-4D76-ADEB-1AFF8DFAD683}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA391BEA-CB7E-4D76-ADEB-1AFF8DFAD683}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA391BEA-CB7E-4D76-ADEB-1AFF8DFAD683}.Release|Any CPU.Build.0 = Release|Any CPU
 		{08D19522-8B88-480C-8B1D-DC51E8983C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08D19522-8B88-480C-8B1D-DC51E8983C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08D19522-8B88-480C-8B1D-DC51E8983C06}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{08D19522-8B88-480C-8B1D-DC51E8983C06}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5DD7FC09-D195-4B9E-8EB2-4C702D39C54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD7FC09-D195-4B9E-8EB2-4C702D39C54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD7FC09-D195-4B9E-8EB2-4C702D39C54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD7FC09-D195-4B9E-8EB2-4C702D39C54B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85FC7746-53B4-46A5-A434-43EB88327651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85FC7746-53B4-46A5-A434-43EB88327651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85FC7746-53B4-46A5-A434-43EB88327651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85FC7746-53B4-46A5-A434-43EB88327651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A92F76D-D411-4F7C-8CC3-50940C2D78F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A92F76D-D411-4F7C-8CC3-50940C2D78F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A92F76D-D411-4F7C-8CC3-50940C2D78F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A92F76D-D411-4F7C-8CC3-50940C2D78F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16461B38-1436-40C1-9754-DC6C6F965D6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16461B38-1436-40C1-9754-DC6C6F965D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16461B38-1436-40C1-9754-DC6C6F965D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16461B38-1436-40C1-9754-DC6C6F965D6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{08D19522-8B88-480C-8B1D-DC51E8983C06} = {26788BF1-3703-457A-AD92-C8A1C1569BA5}
+		{92BBAA7F-070F-46C0-A8CB-90FB43C4C831} = {B120EC6E-7628-4C37-9F62-E0DED58EC5D4}
+		{5DD7FC09-D195-4B9E-8EB2-4C702D39C54B} = {92BBAA7F-070F-46C0-A8CB-90FB43C4C831}
+		{85FC7746-53B4-46A5-A434-43EB88327651} = {92BBAA7F-070F-46C0-A8CB-90FB43C4C831}
+		{8A92F76D-D411-4F7C-8CC3-50940C2D78F1} = {92BBAA7F-070F-46C0-A8CB-90FB43C4C831}
+		{16461B38-1436-40C1-9754-DC6C6F965D6F} = {92BBAA7F-070F-46C0-A8CB-90FB43C4C831}
 	EndGlobalSection
 EndGlobal

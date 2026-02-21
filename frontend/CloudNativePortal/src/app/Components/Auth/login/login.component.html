@@ -1,0 +1,42 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="col-md-8 col-lg-10">
+    <div class="card shadow-lg rounded-4 overflow-hidden d-flex flex-row flex-md-row flex-column">
+
+      <!-- Image Left -->
+      <div class="col-md-6 d-none d-md-block">
+        <div style="
+            background: url('assets/images/login.jpg') center/cover no-repeat;
+            height: 100%;
+            min-height: 100%;
+          ">
+        </div>
+      </div>
+
+      <!-- Login Form Right -->
+      <div class="col-md-6 p-4 d-flex flex-column justify-content-center">
+        <h3 class="text-center mb-4">Login User</h3>
+
+        <form>
+          <div class="mb-3">
+            <label class="form-label">User Id</label>
+            <input type="text" class="form-control" name="username" [(ngModel)]="loginObj.userName" placeholder="Enter your User Id">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" [(ngModel)]="loginObj.password" placeholder="Enter your password">
+          </div>
+
+          <div class="d-grid mt-3">
+            <button type="submit" (click)="login()" class="btn btn-primary btn-lg">Login</button>
+          </div>
+
+          <div class="text-center mt-3">
+            <a href="#" class="text-decoration-none small">Forgot Password?</a>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
