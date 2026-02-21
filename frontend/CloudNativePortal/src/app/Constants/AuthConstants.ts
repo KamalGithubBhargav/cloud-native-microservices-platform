@@ -1,8 +1,8 @@
 import { globalConstants } from "./globalConstants";
 
 export const authConstants = {
-  loginUrl: `${globalConstants.BaseUrl}/Auth/Login`,
-  refreshUrl: `${globalConstants.BaseUrl}/Auth/refresh`
+  loginUrl: `${globalConstants.identityUrl}/Auth/Login`,
+  refreshUrl: `${globalConstants.identityUrl}/Auth/refresh`
 }
 
 export const authMessageConstants = {

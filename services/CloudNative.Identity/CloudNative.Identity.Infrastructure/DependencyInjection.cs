@@ -23,13 +23,24 @@ namespace CloudNative.Identity.Infrastructure
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
+            var connectionString =
+                 configuration[CachingConstant.RedisConnection]
+                 ?? CachingConstant.LocalRedis;
 
-            // Redis
-            services.AddSingleton<IConnectionMultiplexer>(
-                ConnectionMultiplexer.Connect(
-                    configuration[CachingConstant.RedisConnection] ?? CachingConstant.LocalRedis
-                ));
+            services.AddSingleton<IConnectionMultiplexer>(sp =>
+            {
+                var options = ConfigurationOptions.Parse(connectionString);
 
+                // Recommended production settings
+                options.AbortOnConnectFail = false;
+                options.ConnectRetry = 5;
+                options.ReconnectRetryPolicy = new ExponentialRetry(5000);
+                options.KeepAlive = 60;
+                options.ConnectTimeout = 10000;
+                options.SyncTimeout = 10000;
+
+                return ConnectionMultiplexer.Connect(options);
+            });
             services.AddScoped<IRefreshTokenStore, RefreshTokenStore>();
 
             return services;

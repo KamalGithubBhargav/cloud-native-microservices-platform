@@ -38,6 +38,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudNative.Identity.Applic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudNative.Identity.Infrastructure", "services\CloudNative.Identity\CloudNative.Identity.Infrastructure\CloudNative.Identity.Infrastructure.csproj", "{16461B38-1436-40C1-9754-DC6C6F965D6F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{57ADCE5F-636E-41AC-A80F-A5FCDEA511F2}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		redis.conf = redis.conf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
